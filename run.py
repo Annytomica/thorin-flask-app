@@ -7,11 +7,23 @@ from flask import Flask, render_template #use capital F as is a class name
 # As only using one module for app can use built in python variable: __name__
 app = Flask(__name__) 
 
+
 # @ is a decorator in python, allows wrapping of functions
 # when browse the root directory (indicated by '/') the index function is run
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
 
 if __name__ == '__main__': # '__main__' is default module in python
     app.run(
