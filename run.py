@@ -1,5 +1,5 @@
 import os
-from flask import Flask #use capital F as is a class name
+from flask import Flask, render_template #use capital F as is a class name
 
 
 # Storing an instance of class 'Flask' in variable called app
@@ -11,7 +11,7 @@ app = Flask(__name__)
 # when browse the root directory (indicated by '/') the index function is run
 @app.route('/')
 def index():
-    return 'Hello, World'
+    return render_template('index.html')
 
 if __name__ == '__main__': # '__main__' is default module in python
     app.run(
