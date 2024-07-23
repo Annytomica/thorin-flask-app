@@ -25,6 +25,11 @@ def contact():
     return render_template('contact.html')
 
 
+@app.route('/careers')
+def careers():
+    return render_template('careers.html')
+
+
 if __name__ == '__main__': # '__main__' is default module in python
     app.run(
         host=os.environ.get('IP' , '0.0.0.0'), # get IP from os, but if IP variable does not exist the default of '0.0.0.0' used
