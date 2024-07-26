@@ -1,12 +1,15 @@
 import os
 import json
-from flask import Flask, render_template #use capital F as is a class name
+from flask import Flask, render_template, request, flash #use capital F as is a class name
+if os.path.exists("env.py"):
+    import env
 
 
 # Storing an instance of class 'Flask' in variable called app
 # First argument of FLask class is the name of module
 # As only using one module for app can use built in python variable: __name__
-app = Flask(__name__) 
+app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY")
 
 
 # @ is a decorator in python, allows wrapping of functions
@@ -39,8 +42,10 @@ def about_member(member_name):
     return render_template("member.html", member=member) # 1st member refers to member.html, second is member object defined above
 
 
-@app.route('/contact')
+@app.route('/contact', methods=["GET", "POST"]) # Flask default is only GET method, need to state if using another like POST
 def contact():
+    if request.method == "POST":
+        flash("Thanks {}, we have recieved your message!".format(request.form.get("name")))
     return render_template('contact.html', page_title="Contact")
 
 
