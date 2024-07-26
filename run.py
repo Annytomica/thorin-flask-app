@@ -19,9 +19,12 @@ def index():
 @app.route('/about')
 def about():
     data = []
-    with open("data/company.json", "r") as json_data: # opens company.json as 'read-only' ('r'), and assigns content to json_data variable
-        data = json.load(json_data) # assigns json_data to 'data' list variable
-    return render_template('about.html', page_title="About", company=data) # assigning new variable 'company', which will be set thru to html file, the content of 'data'
+    # opens company.json as 'read-only' ('r'), and assigns content to json_data variable
+    # assigns json_data to 'data' list variable
+    with open("data/company.json", "r") as json_data:
+        data = json.load(json_data)
+    # assigning new variable 'company', which will be set thru to html file, the content of 'data'
+    return render_template('about.html', page_title="About", company=data) 
 
 
 @app.route('/contact')
